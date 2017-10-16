@@ -4,7 +4,7 @@ from selenium.webdriver.common.keys import Keys
 
 class LoginTest():
     def LoginTest(self):
-        print("Start LoginTest")
+        super(webdriver)
 
 #get the path of chromedriver
 #create a new Chrome session
