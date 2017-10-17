@@ -1,16 +1,20 @@
-import unittest
 from selenium import webdriver
+import unittest
 
 
-class ParentTest(unittest.TestCase):
+class ParentTest:
+    def __init__(self, wd):  # конструктор передаем адрес wd драйвера
+        self.webdriver = webdriver.Chrome(wd)  # инициализируем вебдрайвер по конкретному полученому адресу
+
+
+class BeforeAfterTest(unittest.TestCase):
+    def __init__(self):
+        self.chrm = ParentTest("") #self.chrm єто обьект ParentTest в которм есть вебдрайвер
+
     def setUp(self):
-        self.driver = webdriver.Chrome('C:\\Users\\Dmitriy\\PycharmProjects\\TestGov\\drivers\\chromedriver.exe')
-        self.driver.maximize_window()
-        self.driver.implicitly_wait(30)
+        self.chrm = ParentTest('C:\\Users\\Dmitriy\\PycharmProjects\\TestGov\\drivers\\chromedriver.exe')
+        self.chrm.webdriver.maximize_window()
+        self.chrm.webdriver.implicitly_wait(30)
 
     def tearDown(self):
-        self.driver.close()
-
-    def checkAC(self, message, actual_result, expected_result):
-        assert message, actual_result in expected_result
-efsafsdfs
+        self.chrm.webdriver.quit()
